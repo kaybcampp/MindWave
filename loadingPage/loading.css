@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    padding: 20px;
+    background-color: #0e153a;
+    color: #e0e0e0;
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loading-container {
+    text-align: center;
+}
+
+.logo h1 {
+    font-size: 5em;
+    color: #00bcd4;
+    font-weight: 700;
+    text-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4;
+    animation: glowAndGrow 2s ease-in-out infinite alternate;
+}
+
+/* Heart Tracing Animation */
+.loading-indicator {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heart {
+    width: 100px;
+    height: 100px;
+    stroke: #00bcd4;
+    fill: none;
+    stroke-width: 2;
+    stroke-dasharray: 250;
+    stroke-dashoffset: 250;
+    animation: traceAndGrow 2s ease-in-out infinite;
+}
+
+/* Keyframes for synchronized glow and tracing animations */
+@keyframes traceAndGrow {
+    0% {
+        stroke-dashoffset: 250;
+    }
+    50% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dashoffset: 250;
+    }
+}
+
+@keyframes glowAndGrow {
+    0% {
+        font-size: 5em;
+        text-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4;
+    }
+    50% {
+        font-size: 5.2em;
+        text-shadow: 0 0 15px #00bcd4, 0 0 25px #00bcd4;
+    }
+    100% {
+        font-size: 5em;
+        text-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4;
+    }
+}
+
