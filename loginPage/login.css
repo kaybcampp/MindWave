@@ -13,6 +13,7 @@ body {
     height: 100vh;
     background-color: #0e153a;
     color: #e0e0e0;
+    overflow: hidden;
 }
 
 .login-container {
