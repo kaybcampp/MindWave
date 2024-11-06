@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindWave - Admin Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Title -->
+        <h1 id="form-title">Welcome</h1>
+        
+        <!-- Login/Create Account Form -->
+        <form id="auth-form">
+            <div class="input-container">
+                <input type="text" id="username" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="input-container">
+                <input type="password" id="password" required>
+                <label for="password">Password</label>
+            </div>
+            <!-- Email Field for Account Creation (hidden initially) -->
+            <div class="input-container" id="email-container" style="display: none;">
+                <input type="email" id="email">
+                <label for="email">Email</label>
+            </div>
+            <button type="submit" id="submit-button">Login</button>
+        </form>
+        
+        <!-- Toggle Buttons -->
+        <div class="toggle-buttons">
+            <button id="toggle-create-account">Create Account</button>
+            <p id="toggle-message">Don’t have an account? <span id="toggle-link">Create one now</span>.</p>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>
