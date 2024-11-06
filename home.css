@@ -1,0 +1,187 @@
+/* General styling (same as before) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #0e153a;
+    color: #e0e0e0;
+    overflow: hidden;
+}
+
+.home-container {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    position: relative;
+}
+
+/* Cumulus Cloud Styling */
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    filter: blur(5px);
+    animation: float 20s linear infinite;
+    opacity: 0.9;
+}
+
+/* Cloud Parts */
+.cloud:before,
+.cloud:after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+/* Cloud 1 - Top Left */
+.cloud1 {
+    width: 150px;
+    height: 80px;
+    top: 40px;
+    left: -100px;
+    animation-delay: 0s;
+}
+.cloud1:before {
+    width: 100px;
+    height: 60px;
+    top: -20px;
+    left: 30px;
+}
+.cloud1:after {
+    width: 80px;
+    height: 40px;
+    top: 10px;
+    left: 80px;
+}
+
+/* Cloud 2 - Center */
+.cloud2 {
+    width: 180px;
+    height: 100px;
+    top: 80px;
+    left: 50px;
+    animation-delay: 5s;
+}
+.cloud2:before {
+    width: 120px;
+    height: 70px;
+    top: -15px;
+    left: 40px;
+}
+.cloud2:after {
+    width: 90px;
+    height: 50px;
+    top: 10px;
+    left: 100px;
+}
+
+/* Cloud 3 - Top Right */
+.cloud3 {
+    width: 140px;
+    height: 70px;
+    top: 60px;
+    right: -90px;
+    animation-delay: 10s;
+}
+.cloud3:before {
+    width: 90px;
+    height: 50px;
+    top: -10px;
+    left: 30px;
+}
+.cloud3:after {
+    width: 70px;
+    height: 40px;
+    top: 10px;
+    left: 70px;
+}
+
+/* Floating Animation */
+@keyframes float {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(30px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #00bcd4;
+    text-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4;
+    margin-bottom: 20px;
+    position: relative; /* Ensures clouds are behind */
+    z-index: 2;
+}
+
+main p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+}
+
+/* Navigation Bar */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #1a1f4d;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px 10px 0 0;
+}
+
+/* Icon Styling */
+.nav-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #00d1e8;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Icon Images */
+.nav-icon img {
+    width: 50px; /* Consistent size for all icons */
+    height: 50px;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 10px 15px rgba(0, 219, 232, 0.5));
+    transform: translateY(0); /* Initial position */
+}
+
+/* Hover Bounce Effect */
+.nav-icon:hover img {
+    transform: translateY(-10px); /* Bounce up on hover */
+}
+
+/* Active Icon Glow */
+.nav-icon.active img {
+    filter: drop-shadow(0 0 15px #00d1e8);
+    transform: scale(1.1);
+}
+
+/* Even Spacing and Centering */
+.bottom-nav .nav-icon {
+    flex: 1;
+    text-align: center;
+}
