@@ -24,10 +24,14 @@
         </div>        
     </div>
 
-    <!-- Redirect script to go to home page after delay -->
+    <!-- Redirect script to go to chat page after delay -->
     <script>
         setTimeout(() => {
-            window.location.href = "../homePage/home.html";
+            // Retrieve target page from session storage or default to home
+            const targetPage = sessionStorage.getItem("targetPage") || "../homePage/home.html";
+            sessionStorage.removeItem("targetPage"); // Clear the target to avoid redirection loop
+
+            window.location.href = targetPage;
         }, 2000); // Display loading screen for 2 seconds
     </script>
 </body>
