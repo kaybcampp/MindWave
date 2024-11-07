@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindWave - Chat</title>
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+    <!-- Cloud Background -->
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+    
+    <div class="chat-container">
+        
+        <!-- Chat Messages Section (Including Avatars, Icons, and Input) -->
+        <div class="chat-messages">
+            <!-- Top Icons within Chat Window -->
+            <div class="top-icons">
+                <span class="icon icon-settings">&#9881;</span> <!-- Settings Gear Icon -->
+                <span class="icon icon-info">i</span> <!-- Info Icon -->
+            </div>
+            
+            <!-- Avatars at the top (Therapist and AI Bot) -->
+            <div class="chat-avatars">
+                <img src="../images/therapist.png" alt="Therapist" class="avatar avatar-therapist">
+                <img src="../images/MEEKO.png" alt="AI Bot" class="avatar avatar-meeko">
+            </div>
+            
+            <!-- Chat Messages -->
+            <div class="messages-area">
+                <div class="message therapist-message">
+                    <p>Hello, how are you feeling today?</p>
+                </div>
+                <div class="message user-message">
+                    <p>I'm feeling a bit stressed but ready to talk.</p>
+                </div>
+                <div class="message ai-message">
+                    <p>If you’d like, I can provide some breathing exercises.</p>
+                </div>
+            </div>
+
+            <!-- Message Input Section -->
+            <div class="message-input">
+                <input type="text" placeholder="Type a message..." />
+                <button>Send</button>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="bottom-nav">
+            <a href="../chatPage/chat.html" class="nav-icon" title="Chat">
+                <img src="../images/chat.png" alt="Chat">
+            </a>
+            <a href="milestone.html" class="nav-icon" title="Milestone Tracking">
+                <img src="../images/milestone.png" alt="Milestone Tracking">
+            </a>
+            <a href="notes.html" class="nav-icon" title="Notes">
+                <img src="../images/notesIcon.png" alt="Notes">
+            </a>
+            <a href="settings.html" class="nav-icon" title="Settings">
+                <img src="../images/settingsIcon.png" alt="Settings">
+            </a>
+        </nav>
+    </div>
+</body>
+</html>
+
