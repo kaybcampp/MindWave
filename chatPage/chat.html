@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MindWave - Chat</title>
     <link rel="stylesheet" href="chat.css">
+    <script src="../nav.js"></script>
 </head>
 <body>
     <!-- Cloud Background -->
@@ -50,18 +51,18 @@
 
         <!-- Navigation Bar -->
         <nav class="bottom-nav">
-            <a href="../chatPage/chat.html" class="nav-icon" title="Chat">
+            <a href="../chatPage/chat.html" class="nav-icon" title="Chat" onclick="showLoading(event, '../chatPage/chat.html')">
                 <img src="../images/chat.png" alt="Chat">
-            </a>
-            <a href="milestone.html" class="nav-icon" title="Milestone Tracking">
-                <img src="../images/milestone.png" alt="Milestone Tracking">
-            </a>
-            <a href="../notesPage/notes.html" class="nav-icon" title="Notes">
+            </a>            
+            <a href="../chatPage/chat.html" class="nav-icon" title="Milestone" onclick="showLoading(event, '../milestonePage/milestone.html')">
+                <img src="../images/milestone.png" alt="Milestone">
+            </a>            
+            <a href="../notesPage/notes.html" class="nav-icon" title="Notes" onclick="showLoading(event, '../notesPage/notes.html')">
                 <img src="../images/notesIcon.png" alt="Notes">
-            </a>
-            <a href="settings.html" class="nav-icon" title="Settings">
+            </a>            
+            <a href="../chatPage/chat.html" class="nav-icon" title="Settings" onclick="showLoading(event, '../settingsPage/settings.html')">
                 <img src="../images/settingsIcon.png" alt="Settings">
-            </a>
+            </a>            
         </nav>
     </div>
 </body>
