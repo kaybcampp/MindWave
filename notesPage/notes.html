@@ -29,12 +29,12 @@
                         <img src="../images/MEEKO.png" alt="Meeko">
                     </div>
                 </div>
-                <button id="save-note-button" class="save-note">Save Note</button>
+                <button id="save-note-button" class="save-note" onclick="saveNote()">Save Note</button>
             </div>
 
             <!-- Button to View/Hide Saved Notes -->
             <div class="saved-notes-buttons">
-                <button id="view-notes-button">View Saved Notes</button>
+                <button id="view-notes-button" onclick="toggleSavedNotes()">View Saved Notes</button>
             </div>
 
             <!-- Container to Show Sticky Notes -->
@@ -44,15 +44,16 @@
         <!-- Enlarged Note Modal -->
         <div id="note-modal" class="note-modal">
             <div class="modal-content">
+                <!-- Close Button at Top-Right Corner -->
+                <button class="close-modal" onclick="closeNoteModal()">×</button>
                 <textarea id="modal-note-content"></textarea>
                 <div class="modal-buttons">
-                    <button id="edit-note-button">Edit</button>
-                    <button id="delete-note-button">Delete</button>
-                    <label>
-                        <input type="checkbox" id="share-note-checkbox">
-                        Share with Therapist
-                    </label>
-                    <button id="close-modal-button">Close</button>
+                    <button onclick="saveEditedNote()">Save</button>
+                    <button onclick="deleteNote()">Delete</button>
+                    <!-- Therapist Contact Bubble for Sharing -->
+                    <div class="therapist-bubble" onclick="toggleShared()">
+                        <img src="../images/therapist.png" alt="Share with Therapist">
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,4 +78,3 @@
     </div>
 </body>
 </html>
-

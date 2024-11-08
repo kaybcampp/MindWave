@@ -1,99 +1,132 @@
-// Save note to localStorage
+let notes = JSON.parse(localStorage.getItem("savedNotes")) || [];
+let currentNoteId = null;
+
 function saveNote() {
-    const noteInput = document.getElementById("note-input");
-    const noteText = noteInput.value.trim();
-
+    const noteText = document.getElementById("note-input").value.trim();
     if (noteText) {
-        const savedNotes = JSON.parse(localStorage.getItem("savedNotes")) || [];
-        savedNotes.push({ id: Date.now(), text: noteText, shared: false });
-        localStorage.setItem("savedNotes", JSON.stringify(savedNotes));
-
-        noteInput.value = "";
-        viewSavedNotes();
-    }
-}
-
-// View or hide saved notes
-function toggleSavedNotes() {
-    const button = document.getElementById("view-notes-button");
-    const container = document.getElementById("sticky-notes-container");
-
-    if (container.style.display === "flex") {
-        container.style.display = "none";
-        button.textContent = "View Saved Notes";
+        const note = { id: Date.now(), text: noteText, colorClass: getRandomColorClass() };
+        notes.push(note);
+        localStorage.setItem("savedNotes", JSON.stringify(notes));
+        document.getElementById("note-input").value = "";
+        renderStickyNotes();
     } else {
-        viewSavedNotes();
-        container.style.display = "flex";
-        button.textContent = "Hide Saved Notes";
+        alert("Please enter some text to save your note.");
     }
 }
 
-// Display saved notes as sticky notes
-function viewSavedNotes() {
-    const savedNotes = JSON.parse(localStorage.getItem("savedNotes")) || [];
+function getRandomColorClass() {
+    const colors = ["color-1", "color-2", "color-3", "color-4"];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function renderStickyNotes() {
     const container = document.getElementById("sticky-notes-container");
-
     container.innerHTML = "";
-    savedNotes.forEach((note) => {
+    notes.forEach(note => {
         const stickyNote = document.createElement("div");
-        stickyNote.className = `sticky-note color-${(note.id % 4) + 1}`;
-        stickyNote.textContent = note.text.slice(0, 100); // Short preview
+        stickyNote.className = `sticky-note ${note.colorClass}`;
+        stickyNote.textContent = note.text;
+        stickyNote.onclick = () => openNoteModal(note.id);
 
-        stickyNote.onclick = () => openNoteModal(note);
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "delete-note";
+        deleteBtn.textContent = "x";
+        deleteBtn.onclick = (e) => {
+            e.stopPropagation();
+            deleteNoteById(note.id);
+        };
+
+        stickyNote.appendChild(deleteBtn);
         container.appendChild(stickyNote);
     });
 }
 
-// Open modal to view/edit a saved note
-function openNoteModal(note) {
-    const modal = document.getElementById("note-modal");
-    const modalContent = document.getElementById("modal-note-content");
-    const shareCheckbox = document.getElementById("share-note-checkbox");
-
-    modal.style.display = "flex";
-    modalContent.value = note.text;
-    shareCheckbox.checked = note.shared;
-
-    document.getElementById("edit-note-button").onclick = () => saveEditedNote(note.id);
-    document.getElementById("delete-note-button").onclick = () => deleteNoteAndClose(note.id);
-    document.getElementById("close-modal-button").onclick = () => closeModal();
-}
-
-// Save edits to a note
-function saveEditedNote(id) {
-    const savedNotes = JSON.parse(localStorage.getItem("savedNotes")) || [];
-    const updatedText = document.getElementById("modal-note-content").value;
-    const shareCheckbox = document.getElementById("share-note-checkbox");
-
-    const noteIndex = savedNotes.findIndex(note => note.id === id);
-    if (noteIndex > -1) {
-        savedNotes[noteIndex].text = updatedText;
-        savedNotes[noteIndex].shared = shareCheckbox.checked;
-        localStorage.setItem("savedNotes", JSON.stringify(savedNotes));
-        viewSavedNotes();
-        closeModal();
+function toggleSavedNotes() {
+    const container = document.getElementById("sticky-notes-container");
+    const button = document.getElementById("view-notes-button");
+    if (container.style.display === "flex") {
+        container.style.display = "none";
+        button.textContent = "View Saved Notes";
+    } else {
+        container.style.display = "flex";
+        button.textContent = "Hide Saved Notes";
+        renderStickyNotes();
     }
 }
 
-// Delete note and close modal
-function deleteNoteAndClose(id) {
-    deleteNote(id);
-    closeModal();
+function openNoteModal(id) {
+    const note = notes.find(n => n.id === id);
+    if (note) {
+        currentNoteId = id;
+        const modal = document.getElementById("note-modal");
+        const modalContent = document.querySelector(".modal-content");
+        const modalButtons = document.querySelector(".modal-buttons");
+        const therapistBubble = document.querySelector(".therapist-bubble");
+
+        // Clear previous color classes and add the selected note's color class
+        modalContent.classList.remove("color-1", "color-2", "color-3", "color-4");
+        modalButtons.classList.remove("color-1", "color-2", "color-3", "color-4");
+        therapistBubble.classList.remove("color-1", "color-2", "color-3", "color-4");
+
+        modalContent.classList.add(note.colorClass);
+        modalButtons.classList.add(note.colorClass);
+        therapistBubble.classList.add(note.colorClass);
+
+        document.getElementById("modal-note-content").value = note.text;
+        modal.style.display = "flex";
+
+        // Add close button to modal's top-right corner
+        if (!document.querySelector(".close-modal")) {
+            const closeModalBtn = document.createElement("button");
+            closeModalBtn.className = "close-modal";
+            closeModalBtn.textContent = "x";
+            closeModalBtn.onclick = closeNoteModal;
+            modalContent.appendChild(closeModalBtn);
+        }
+    }
 }
 
-// Delete a note from localStorage
-function deleteNote(id) {
-    const savedNotes = JSON.parse(localStorage.getItem("savedNotes")) || [];
-    const updatedNotes = savedNotes.filter(note => note.id !== id);
-    localStorage.setItem("savedNotes", JSON.stringify(updatedNotes));
-    viewSavedNotes();
+function saveEditedNote() {
+    const newText = document.getElementById("modal-note-content").value;
+    const note = notes.find(n => n.id === currentNoteId);
+    if (note) {
+        note.text = newText;
+        localStorage.setItem("savedNotes", JSON.stringify(notes));
+        closeNoteModal();
+        renderStickyNotes();
+    }
 }
 
-// Close modal
-function closeModal() {
-    document.getElementById("note-modal").style.display = "none";
+function deleteNoteById(id) {
+    notes = notes.filter(n => n.id !== id);
+    localStorage.setItem("savedNotes", JSON.stringify(notes));
+    renderStickyNotes();
 }
 
-// Toggle view notes on button click
-document.getElementById("view-notes-button").onclick = toggleSavedNotes;
-document.getElementById("save-note-button").onclick = saveNote;
+function deleteNote() {
+    if (currentNoteId) {
+        deleteNoteById(currentNoteId);
+        closeNoteModal();
+    }
+}
+
+function toggleShared() {
+    alert("This note has been shared with your therapist.");
+}
+
+function closeNoteModal() {
+    const modal = document.getElementById("note-modal");
+    const modalContent = document.querySelector(".modal-content");
+    const modalButtons = document.querySelector(".modal-buttons");
+    const therapistBubble = document.querySelector(".therapist-bubble");
+
+    modal.style.display = "none";
+    modalContent.classList.remove("color-1", "color-2", "color-3", "color-4");
+    modalButtons.classList.remove("color-1", "color-2", "color-3", "color-4");
+    therapistBubble.classList.remove("color-1", "color-2", "color-3", "color-4");
+    currentNoteId = null;
+}
+
+document.getElementById("note-modal").onclick = function(event) {
+    if (event.target === this) closeNoteModal();
+};
