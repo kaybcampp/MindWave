@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindWave - Notes</title>
+    <link rel="stylesheet" href="notes.css">
+</head>
+<body>
+    <div class="notes-container">
+        <!-- Floating Cumulus Clouds -->
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+
+        <!-- Header Section -->
+        <header>
+            <h1>Your Notes</h1>
+            <p>Reflect on your thoughts, track progress, or journal freely.</p>
+        </header>
+
+        <!-- Notes Area -->
+        <main>
+            <div class="notes-area">
+                <div class="textarea-container">
+                    <textarea id="note-input" placeholder="Start typing your notes here..."></textarea>
+                    <!-- Meeko Contact Bubble -->
+                    <div class="meeko-bubble">
+                        <img src="../images/MEEKO.png" alt="Meeko">
+                    </div>
+                </div>
+                <button id="save-note-button" class="save-note">Save Note</button>
+            </div>
+
+            <!-- Button to View/Hide Saved Notes -->
+            <div class="saved-notes-buttons">
+                <button id="view-notes-button">View Saved Notes</button>
+            </div>
+
+            <!-- Container to Show Sticky Notes -->
+            <div id="sticky-notes-container" class="sticky-notes-container"></div>
+        </main>
+
+        <!-- Enlarged Note Modal -->
+        <div id="note-modal" class="note-modal">
+            <div class="modal-content">
+                <textarea id="modal-note-content"></textarea>
+                <div class="modal-buttons">
+                    <button id="edit-note-button">Edit</button>
+                    <button id="delete-note-button">Delete</button>
+                    <label>
+                        <input type="checkbox" id="share-note-checkbox">
+                        Share with Therapist
+                    </label>
+                    <button id="close-modal-button">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="bottom-nav">
+            <a href="../chatPage/chat.html" class="nav-icon" title="Chat">
+                <img src="../images/chat.png" alt="Chat">
+            </a>
+            <a href="../milestonePage/milestone.html" class="nav-icon" title="Milestone Tracking">
+                <img src="../images/milestone.png" alt="Milestone Tracking">
+            </a>
+            <a href="#" class="nav-icon active-page" title="Notes">
+                <img src="../images/notesIcon.png" alt="Notes">
+            </a>
+            <a href="../settingsPage/settings.html" class="nav-icon" title="Settings">
+                <img src="../images/settingsIcon.png" alt="Settings">
+            </a>
+        </nav>
+
+        <script src="notes.js"></script>
+    </div>
+</body>
+</html>
+
