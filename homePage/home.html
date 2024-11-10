@@ -14,28 +14,28 @@
         <div class="cloud cloud2"></div>
         <div class="cloud cloud3"></div>
 
-        <!-- Header Section -->
-        <header>
-            <h1>Welcome to MindWave</h1>
-        </header>
-
-        <main>
+        <!-- Centered Welcome Section -->
+        <div class="welcome-section">
+            <header>
+                <h1>Welcome to MindWave</h1>
+            </header>
             <p>Your journey towards mental wellness starts here.</p>
+            <button class="learn-more-button" onclick="showAboutSection()">Learn More</button>
+        </div>
 
-            <!-- About Us Box -->
-            <div class="about-box">
-                <h2>About MindWave</h2>
-                <p>MindWave is your personal wellness companion, designed to support mental health with an interactive experience.</p>
-                <h3>Features:</h3>
-                <ul>
-                    <li><strong>Chat:</strong> Communicate directly with your therapist or access helpful tips from our AI assistant.</li>
-                    <li><strong>Milestone Tracking:</strong> Set and track daily goals that encourage a healthier, happier routine.</li>
-                    <li><strong>Notes:</strong> Reflect, journal, and gain insights to better understand your journey. Share reflections as you choose.</li>
-                </ul>
-                <!-- Explore Now Button -->
-                <button class="explore-button" onclick="exploreNow()">Explore Now</button>
-            </div>
-        </main>
+        <!-- Hidden About MindWave Section -->
+        <div class="about-box" id="about-box" style="display: none;">
+            <h2>About MindWave</h2>
+            <p>MindWave is your personal wellness companion, designed to support mental health with an interactive experience.</p>
+            <h3>Features:</h3>
+            <ul>
+                <li><strong>Chat:</strong> Communicate directly with your therapist or access helpful tips from our AI assistant.</li>
+                <li><strong>Milestone Tracking:</strong> Set and track daily goals that encourage a healthier, happier routine.</li>
+                <li><strong>Notes:</strong> Reflect, journal, and gain insights to better understand your journey. Share reflections as you choose.</li>
+            </ul>
+            <!-- Explore Now Button in About Box -->
+            <button class="explore-button" id="explore-button" onclick="exploreNow()">Explore Now</button>
+        </div>
 
         <!-- Conditionally Rendered Navigation Bar -->
         <nav class="bottom-nav" id="nav-bar" style="display: none;">
@@ -55,15 +55,30 @@
     </div>
 
     <script>
+        // Display About section and hide Welcome section and Explore Now button if user is logged in
+        document.addEventListener("DOMContentLoaded", () => {
+            const isLoggedIn = sessionStorage.getItem("isLoggedIn") === "true";
+            
+            if (isLoggedIn) {
+                document.getElementById("about-box").style.display = "block";
+                document.querySelector(".welcome-section").style.display = "none";
+                document.getElementById("explore-button").style.display = "none";
+            }
+        });
+
+        // Function to show About section and hide Welcome section
+        function showAboutSection() {
+            document.getElementById("about-box").style.display = "block";
+            document.querySelector(".welcome-section").style.display = "none";
+        }
+
+        // Explore Now button functionality for loading screen and redirection
         function exploreNow() {
             if (!sessionStorage.getItem("isLoggedIn")) {
-                // Set the login page as the next destination after loading screen
                 sessionStorage.setItem("nextPage", "../loginPage/login.html");
             } else {
-                // User is logged in, set chat page as the next destination
                 sessionStorage.setItem("nextPage", "../chatPage/chat.html");
             }
-            // Redirect to loading screen
             window.location.href = "../loadingPage/loading.html";
         }
     </script>
