@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MindWave - Home</title>
     <link rel="stylesheet" href="home.css">
+    <script src="../nav.js"></script>
 </head>
 <body>
     <div class="home-container">
@@ -32,43 +33,33 @@
                     <li><strong>Notes:</strong> Reflect, journal, and gain insights to better understand your journey. Share reflections as you choose.</li>
                 </ul>
                 <!-- Explore Now Button -->
-                <button class="explore-button" onclick="navigateWithLoginCheck()">Explore Now</button>
+                <button class="explore-button" onclick="redirectToLogin()">Explore Now</button>
             </div>
         </main>
 
         <!-- Navigation Bar -->
         <nav class="bottom-nav">
-            <a href="javascript:void(0)" class="nav-icon" title="Chat" onclick="navigateWithLoginCheck('../chatPage/chat.html')">
+            <a href="javascript:void(0)" class="nav-icon" title="Chat" onclick="redirectToLogin()">
                 <img src="../images/chat.png" alt="Chat">
             </a>            
-            <a href="javascript:void(0)" class="nav-icon" title="Milestone" onclick="navigateWithLoginCheck('../milestonePage/milestone.html')">
+            <a href="javascript:void(0)" class="nav-icon" title="Milestone" onclick="redirectToLogin()">
                 <img src="../images/milestone.png" alt="Milestone">
             </a>            
-            <a href="javascript:void(0)" class="nav-icon" title="Notes" onclick="navigateWithLoginCheck('../notesPage/notes.html')">
+            <a href="javascript:void(0)" class="nav-icon" title="Notes" onclick="redirectToLogin()">
                 <img src="../images/notesIcon.png" alt="Notes">
             </a>            
-            <a href="javascript:void(0)" class="nav-icon" title="Settings" onclick="navigateWithLoginCheck('../settingsPage/settings.html')">
+            <a href="javascript:void(0)" class="nav-icon" title="Settings" onclick="redirectToLogin()">
                 <img src="../images/settingsIcon.png" alt="Settings">
             </a>             
         </nav>
     </div>
 
     <script>
-        function navigateWithLoginCheck(targetUrl) {
-            // Check if user is logged in
-            if (sessionStorage.getItem("isLoggedIn") === "true") {
-                // If logged in, navigate to the target page
-                window.location.href = targetUrl;
-            } else {
-                // If not logged in, store the target page and redirect to login
-                sessionStorage.setItem("nextPage", targetUrl || "../loginPage/login.html"); 
+        function redirectToLogin() {
+            if (!sessionStorage.getItem("isLoggedIn")) {
+                sessionStorage.setItem("nextPage", "../loginPage/login.html"); 
                 window.location.href = "../loadingPage/loading.html";
             }
-        }
-
-        function navigateToExplore() {
-            // Navigate to login if not logged in
-            navigateWithLoginCheck("../loginPage/login.html");
         }
     </script>
 </body>

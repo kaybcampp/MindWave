@@ -234,6 +234,24 @@ header h1 {
     background-color: #00a1c2;
 }
 
+/* Sign Out button styling */
+.signout-button {
+    background-color: #d9534f;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+.signout-button:hover {
+    background-color: #c9302c;
+}
+
 /* Bottom Navigation Bar */
 .bottom-nav {
     display: flex;

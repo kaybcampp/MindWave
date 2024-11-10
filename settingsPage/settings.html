@@ -57,6 +57,9 @@
             </div>
 
             <button class="save-button">Save Settings</button>
+
+            <!-- Sign Out Button -->
+            <button class="signout-button" onclick="signOut()">Sign Out</button>
         </div>
 
         <!-- Bottom Navigation Bar -->
@@ -88,6 +91,14 @@
                 reader.readAsDataURL(file);
             }
         });
+
+        // Sign-out function to clear login data and redirect to home page
+        function signOut() {
+            // Clear login session or local storage
+            sessionStorage.removeItem("isLoggedIn");
+            // Redirect to home page
+            window.location.href = "../homePage/home.html";
+        }
     </script>
 </body>
 </html>
