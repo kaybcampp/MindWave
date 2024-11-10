@@ -8,29 +8,165 @@
 
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 100vh;
     background-color: #0e153a;
     color: #e0e0e0;
     overflow: hidden;
+    position: relative; /* Needed for cloud positioning */
 }
 
+/* Cumulus Cloud Styling */
+.cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    filter: blur(10px);
+    opacity: 0.8;
+    animation: float 20s linear infinite;
+    z-index: 0; /* Ensures clouds are behind content */
+}
+
+/* Cloud 1 - Top Left */
+.cloud1 {
+    width: 200px;
+    height: 120px;
+    top: 10%;
+    left: -50px;
+    animation-delay: 0s;
+}
+.cloud1:before {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 90px;
+    top: -20px;
+    left: 40px;
+    background: inherit;
+    border-radius: 50%;
+}
+.cloud1:after {
+    content: '';
+    position: absolute;
+    width: 110px;
+    height: 60px;
+    top: 10px;
+    left: 120px;
+    background: inherit;
+    border-radius: 50%;
+}
+
+/* Cloud 2 - Center */
+.cloud2 {
+    width: 250px;
+    height: 150px;
+    top: 40%;
+    left: 70%;
+    animation-delay: 10s;
+}
+.cloud2:before {
+    content: '';
+    position: absolute;
+    width: 180px;
+    height: 100px;
+    top: -10px;
+    left: 30px;
+    background: inherit;
+    border-radius: 50%;
+}
+.cloud2:after {
+    content: '';
+    position: absolute;
+    width: 130px;
+    height: 70px;
+    top: 20px;
+    left: 150px;
+    background: inherit;
+    border-radius: 50%;
+}
+
+/* Cloud 3 - Bottom Right */
+.cloud3 {
+    width: 220px;
+    height: 130px;
+    bottom: 15%;
+    right: -70px;
+    animation-delay: 5s;
+}
+.cloud3:before {
+    content: '';
+    position: absolute;
+    width: 160px;
+    height: 90px;
+    top: -15px;
+    left: 40px;
+    background: inherit;
+    border-radius: 50%;
+}
+.cloud3:after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 60px;
+    top: 10px;
+    left: 100px;
+    background: inherit;
+    border-radius: 50%;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+}
+
+/* MindWave Title and Meeko Avatar */
+.header-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    z-index: 1;
+}
+
+.mindwave-title {
+    font-size: 3em;
+    color: #00bcd4;
+    text-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4; }
+    100% { text-shadow: 0 0 20px #00bcd4, 0 0 30px #00bcd4; }
+}
+
+.meeko-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-left: 15px;
+    border: 2px solid #00bcd4;
+    box-shadow: 0 0 10px #00bcd4;
+}
+
+/* Login container styling */
 .login-container {
     text-align: center;
     padding: 30px;
-    background-color: #1a1f4d;
+    background-color: rgba(26, 31, 77, 0.9);
     border-radius: 10px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
     width: 90%;
     max-width: 400px;
+    z-index: 1; /* Ensures content is above clouds */
 }
 
-h1 {
+/* Login form elements */
+h2 {
     color: #00bcd4;
-    font-size: 2.5em;
+    font-size: 2em;
     margin-bottom: 20px;
-    text-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4;
 }
 
 .input-container {
@@ -87,7 +223,6 @@ button:hover {
     background-color: #00d1e8;
 }
 
-/* Toggle button styling */
 .toggle-buttons {
     margin-top: 20px;
 }
@@ -102,39 +237,4 @@ button:hover {
     color: #00d1e8;
     cursor: pointer;
     text-decoration: underline;
-}
-
-/* Loading Screen Overlay */
-body.loading-active .login-container {
-    display: none; /* Hide login form during loading */
-}
-
-body.loading-active::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #0e153a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-}
-
-body.loading-active::after {
-    content: "Loading...";
-    color: #00bcd4;
-    font-size: 2em;
-    animation: glow 1.5s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-    0% {
-        text-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4;
-    }
-    100% {
-        text-shadow: 0 0 20px #00bcd4, 0 0 30px #00bcd4;
-    }
 }

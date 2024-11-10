@@ -7,9 +7,20 @@
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
+    <!-- Floating Cumulus Clouds -->
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+
+    <!-- MindWave Title and Meeko Avatar -->
+    <div class="header-container">
+        <h1 class="mindwave-title">MindWave</h1>
+        <img src="../images/MEEKO.png" alt="Meeko Avatar" class="meeko-avatar">
+    </div>
+
     <div class="login-container">
         <!-- Title -->
-        <h1 id="form-title">Welcome</h1>
+        <h2 id="form-title">Welcome</h2>
         
         <!-- Login/Create Account Form -->
         <form id="auth-form">
@@ -36,67 +47,6 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const formTitle = document.getElementById("form-title");
-            const submitButton = document.getElementById("submit-button");
-            const emailContainer = document.getElementById("email-container");
-            const toggleButton = document.getElementById("toggle-create-account");
-            const toggleLink = document.getElementById("toggle-link");
-            const authForm = document.getElementById("auth-form");
-
-            let isCreatingAccount = false;
-
-            // Hardcoded test credentials
-            const testUsername = "testuser";
-            const testPassword = "password123";
-
-            function toggleForm() {
-                isCreatingAccount = !isCreatingAccount;
-
-                // Update form title and button text
-                formTitle.textContent = isCreatingAccount ? "Sign Up" : "Welcome";
-                submitButton.textContent = isCreatingAccount ? "Create Account" : "Login";
-
-                // Show/hide the email field for account creation
-                emailContainer.style.display = isCreatingAccount ? "block" : "none";
-
-                // Update toggle text
-                toggleButton.textContent = isCreatingAccount ? "Back to Login" : "Create Account";
-                toggleLink.textContent = isCreatingAccount ? "Log in instead" : "Create one now";
-            }
-
-            // Event listeners for toggling between login and sign up
-            toggleButton.addEventListener("click", toggleForm);
-            toggleLink.addEventListener("click", toggleForm);
-
-            // Function to navigate with loading delay
-            function navigateTo(pageUrl) {
-                sessionStorage.setItem("nextPage", pageUrl); // Store target page URL
-                window.location.href = "../loadingPage/loading.html"; // Redirect to loading page
-            }
-
-            // Form submit event listener
-            authForm.addEventListener("submit", (e) => {
-                e.preventDefault(); // Prevent page reload
-
-                const username = document.getElementById("username").value;
-                const password = document.getElementById("password").value;
-
-                if (isCreatingAccount) {
-                    alert(`Account created successfully for ${username}!`);
-                    toggleForm(); // Go back to login mode
-                } else {
-                    // Check against test credentials
-                    if (username === testUsername && password === testPassword) {
-                        // Redirect to loading page if login is successful
-                        navigateTo("../homePage/home.html");
-                    } else {
-                        alert("Incorrect username or password. Please try again.");
-                    }
-                }
-            });
-        });
-    </script>
+    <script src="login.js"></script>
 </body>
 </html>

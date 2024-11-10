@@ -14,15 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function toggleForm() {
         isCreatingAccount = !isCreatingAccount;
-
-        // Update form title and button text
         formTitle.textContent = isCreatingAccount ? "Sign Up" : "Welcome";
         submitButton.textContent = isCreatingAccount ? "Create Account" : "Login";
-
-        // Show/hide the email field for account creation
         emailContainer.style.display = isCreatingAccount ? "block" : "none";
-
-        // Update toggle text
         toggleButton.textContent = isCreatingAccount ? "Back to Login" : "Create Account";
         toggleLink.textContent = isCreatingAccount ? "Log in instead" : "Create one now";
     }
@@ -30,6 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event listeners for toggling between login and sign up
     toggleButton.addEventListener("click", toggleForm);
     toggleLink.addEventListener("click", toggleForm);
+
+    function navigateTo(pageUrl) {
+        sessionStorage.setItem("nextPage", pageUrl); // Store target page URL
+        window.location.href = "../loadingPage/loading.html"; // Redirect to loading page
+    }
 
     // Form submit event listener
     authForm.addEventListener("submit", (e) => {
@@ -44,8 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             // Check against test credentials
             if (username === testUsername && password === testPassword) {
-                // Redirect to loading page if login is successful
-                window.location.href = "../loadingPage/loading.html";
+                navigateTo("../homePage/home.html");
             } else {
                 alert("Incorrect username or password. Please try again.");
             }
