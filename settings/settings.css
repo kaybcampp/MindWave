@@ -1,0 +1,278 @@
+/* General styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #0e153a;
+    color: #e0e0e0;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Container styling for settings page */
+.settings-container {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(26, 31, 77, 0.95); /* Increased opacity for readability */
+    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Cloud Styling - matched with home page alignment */
+.cloud {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    filter: blur(5px);
+    animation: float 20s linear infinite;
+    opacity: 0.9;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Cloud Positions */
+.cloud1 {
+    width: 150px;
+    height: 80px;
+    top: 10%;
+    left: -8%;
+    animation-delay: 0s;
+}
+.cloud1:before, .cloud1:after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+.cloud1:before {
+    width: 100px;
+    height: 60px;
+    top: -20px;
+    left: 30px;
+}
+.cloud1:after {
+    width: 80px;
+    height: 40px;
+    top: 10px;
+    left: 80px;
+}
+
+.cloud2 {
+    width: 180px;
+    height: 100px;
+    top: 35%;
+    left: 20%;
+    animation-delay: 5s;
+}
+.cloud2:before, .cloud2:after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+.cloud2:before {
+    width: 120px;
+    height: 70px;
+    top: -15px;
+    left: 40px;
+}
+.cloud2:after {
+    width: 90px;
+    height: 50px;
+    top: 10px;
+    left: 100px;
+}
+
+.cloud3 {
+    width: 140px;
+    height: 70px;
+    top: 60%;
+    right: -5%;
+    animation-delay: 10s;
+}
+.cloud3:before, .cloud3:after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+.cloud3:before {
+    width: 90px;
+    height: 50px;
+    top: -10px;
+    left: 30px;
+}
+.cloud3:after {
+    width: 70px;
+    height: 40px;
+    top: 10px;
+    left: 70px;
+}
+
+@keyframes float {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(30px); }
+    100% { transform: translateX(0); }
+}
+
+/* Header styling */
+header h1 {
+    font-size: 2.5em;
+    color: #00bcd4;
+    text-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4;
+    margin-bottom: 20px;
+}
+
+/* Scrollable settings section */
+.settings-section {
+    background-color: #1a1f4d;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    color: #d3e4ff;
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #00bcd4 #1a1f4d;
+}
+
+/* Scrollbar styling */
+.settings-section::-webkit-scrollbar {
+    width: 8px;
+}
+.settings-section::-webkit-scrollbar-thumb {
+    background-color: #00bcd4;
+    border-radius: 10px;
+}
+
+/* Setting items styling */
+.setting-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.setting-item label {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #00d1e8;
+    margin-bottom: 8px;
+}
+
+.setting-item input[type="text"],
+.setting-item input[type="email"],
+.setting-item select {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #2a2f5b;
+    color: #d3e4ff;
+    font-size: 1em;
+    width: 80%;
+    text-align: center;
+}
+
+.checkbox-item {
+    margin: 5px 0;
+}
+
+/* Profile Picture Avatar Styling */
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #2a2f5b;
+    box-shadow: 0 0 8px rgba(0, 219, 232, 0.5);
+    transition: transform 0.3s;
+}
+
+.avatar:hover {
+    transform: scale(1.05);
+}
+
+/* Hide file input */
+#profile-picture {
+    display: none;
+}
+
+/* Save button styling */
+.save-button {
+    background-color: #00bcd4;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+.save-button:hover {
+    background-color: #00a1c2;
+}
+
+/* Bottom Navigation Bar */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #1a1f4d;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px 10px 0 0;
+    z-index: 2;
+}
+
+/* Icon Styling */
+.nav-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #00d1e8;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.nav-icon img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 10px 15px rgba(0, 219, 232, 0.5));
+}
+
+.nav-icon:hover img {
+    transform: translateY(-10px);
+}
+
+.nav-icon.active-page img {
+    filter: drop-shadow(0 0 15px #00d1e8);
+    transform: scale(1.1);
+}

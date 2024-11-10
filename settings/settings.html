@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindWave - Settings</title>
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <div class="settings-container">
+        <!-- Floating Cumulus Clouds -->
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+
+        <!-- Header Section -->
+        <header>
+            <h1>Settings</h1>
+        </header>
+
+        <!-- Scrollable Settings Section -->
+        <div class="settings-section">
+            <!-- Account Settings Section -->
+            <div class="setting-item avatar-container">
+                <label for="profile-picture">Profile Picture</label>
+                <input type="file" id="profile-picture" accept="image/*">
+                <img src="../images/default-avatar.png" alt="Avatar" class="avatar" onclick="document.getElementById('profile-picture').click();">
+            </div>
+
+            <div class="setting-item">
+                <label for="username">Username</label>
+                <input type="text" id="username" value="CurrentUsername">
+            </div>
+
+            <div class="setting-item">
+                <label for="email">Email</label>
+                <input type="email" id="email" value="user@example.com">
+            </div>
+
+            <div class="setting-item">
+                <label>Notifications</label>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="email-notifications"> Email Notifications
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="push-notifications"> Push Notifications
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <label>Theme</label>
+                <select id="theme-selector">
+                    <option value="default">Default</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+
+            <button class="save-button">Save Settings</button>
+        </div>
+
+        <!-- Bottom Navigation Bar -->
+        <nav class="bottom-nav">
+            <a href="../chatPage/chat.html" class="nav-icon" title="Chat">
+                <img src="../images/chat.png" alt="Chat">
+            </a>
+            <a href="../milestonePage/milestone.html" class="nav-icon" title="Milestone">
+                <img src="../images/milestone.png" alt="Milestone">
+            </a>
+            <a href="../notesPage/notes.html" class="nav-icon" title="Notes">
+                <img src="../images/notesIcon.png" alt="Notes">
+            </a>
+            <a href="settings.html" class="nav-icon active-page" title="Settings">
+                <img src="../images/settingsIcon.png" alt="Settings">
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // JavaScript to preview the selected profile picture
+        document.getElementById("profile-picture").addEventListener("change", function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.querySelector(".avatar").src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
