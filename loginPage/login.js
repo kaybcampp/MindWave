@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let isCreatingAccount = false;
 
     // Hardcoded test credentials
-    const testUsername = "testuser";
-    const testPassword = "password123";
+    const TEST_USERNAME = "testuser";
+    const TEST_PASSWORD = "password123";
 
     function toggleForm() {
         isCreatingAccount = !isCreatingAccount;
@@ -21,29 +21,33 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleLink.textContent = isCreatingAccount ? "Log in instead" : "Create one now";
     }
 
-    // Event listeners for toggling between login and sign up
     toggleButton.addEventListener("click", toggleForm);
     toggleLink.addEventListener("click", toggleForm);
 
-    function navigateTo(pageUrl) {
-        sessionStorage.setItem("nextPage", pageUrl); // Store target page URL
-        window.location.href = "../loadingPage/loading.html"; // Redirect to loading page
-    }
-
     // Form submit event listener
     authForm.addEventListener("submit", (e) => {
-        e.preventDefault(); // Prevent page reload
+        e.preventDefault();
 
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
 
+        // Simple form validation
+        if (!username || !password) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
         if (isCreatingAccount) {
             alert(`Account created successfully for ${username}!`);
-            toggleForm(); // Go back to login mode
+            toggleForm();
         } else {
-            // Check against test credentials
-            if (username === testUsername && password === testPassword) {
-                navigateTo("../homePage/home.html");
+            if (username === TEST_USERNAME && password === TEST_PASSWORD) {
+                // Mark user as logged in and set the loading transition
+                sessionStorage.setItem("isLoggedIn", "true"); 
+                sessionStorage.setItem("nextPage", "../homePage/home.html"); // Set the home page as the next page after loading
+
+                // Redirect to loading page first
+                window.location.href = "../loadingPage/loading.html";
             } else {
                 alert("Incorrect username or password. Please try again.");
             }

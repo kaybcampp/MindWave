@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MindWave - Chat</title>
     <link rel="stylesheet" href="chat.css">
-    <script src="../nav.js"></script>
+    <script src="../nav.js" defer></script>
 </head>
 <body>
     <!-- Cloud Background -->
@@ -54,7 +54,7 @@
             <a href="../chatPage/chat.html" class="nav-icon" title="Chat" onclick="showLoading(event, '../chatPage/chat.html')">
                 <img src="../images/chat.png" alt="Chat">
             </a>            
-            <a href="../chatPage/chat.html" class="nav-icon" title="Milestone" onclick="showLoading(event, '../milestonePage/milestone.html')">
+            <a href="../milestonePage/milestone.html" class="nav-icon" title="Milestone" onclick="showLoading(event, '../milestonePage/milestone.html')">
                 <img src="../images/milestone.png" alt="Milestone">
             </a>            
             <a href="../notesPage/notes.html" class="nav-icon" title="Notes" onclick="showLoading(event, '../notesPage/notes.html')">
@@ -65,6 +65,23 @@
             </a>            
         </nav>
     </div>
+
+    <script>
+        // Check if the user is logged in; if not, redirect to loading page
+        document.addEventListener("DOMContentLoaded", () => {
+            if (!sessionStorage.getItem("isLoggedIn")) {
+                sessionStorage.setItem("nextPage", "../chatPage/chat.html");
+                window.location.href = "../loadingPage/loading.html";
+            }
+        });
+
+        // Show loading page when navigating to other sections
+        function showLoading(event, targetUrl) {
+            event.preventDefault();
+            sessionStorage.setItem("nextPage", targetUrl);
+            window.location.href = "../loadingPage/loading.html";
+        }
+    </script>
 </body>
 </html>
 

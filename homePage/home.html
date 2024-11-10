@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MindWave - Home</title>
     <link rel="stylesheet" href="home.css">
-    <script src="../nav.js"></script>
+    <script src="../global.js" defer></script>
 </head>
 <body>
     <div class="home-container">
@@ -33,33 +33,38 @@
                     <li><strong>Notes:</strong> Reflect, journal, and gain insights to better understand your journey. Share reflections as you choose.</li>
                 </ul>
                 <!-- Explore Now Button -->
-                <button class="explore-button" onclick="redirectToLogin()">Explore Now</button>
+                <button class="explore-button" onclick="exploreNow()">Explore Now</button>
             </div>
         </main>
 
-        <!-- Navigation Bar -->
-        <nav class="bottom-nav">
-            <a href="javascript:void(0)" class="nav-icon" title="Chat" onclick="redirectToLogin()">
+        <!-- Conditionally Rendered Navigation Bar -->
+        <nav class="bottom-nav" id="nav-bar" style="display: none;">
+            <a href="javascript:void(0)" class="nav-icon active-page" title="Chat" data-target="../chatPage/chat.html">
                 <img src="../images/chat.png" alt="Chat">
-            </a>            
-            <a href="javascript:void(0)" class="nav-icon" title="Milestone" onclick="redirectToLogin()">
+            </a>
+            <a href="javascript:void(0)" class="nav-icon" title="Milestone" data-target="../milestonePage/milestone.html">
                 <img src="../images/milestone.png" alt="Milestone">
-            </a>            
-            <a href="javascript:void(0)" class="nav-icon" title="Notes" onclick="redirectToLogin()">
+            </a>
+            <a href="javascript:void(0)" class="nav-icon" title="Notes" data-target="../notesPage/notes.html">
                 <img src="../images/notesIcon.png" alt="Notes">
-            </a>            
-            <a href="javascript:void(0)" class="nav-icon" title="Settings" onclick="redirectToLogin()">
+            </a>
+            <a href="javascript:void(0)" class="nav-icon" title="Settings" data-target="../settingsPage/settings.html">
                 <img src="../images/settingsIcon.png" alt="Settings">
-            </a>             
+            </a>
         </nav>
     </div>
 
     <script>
-        function redirectToLogin() {
+        function exploreNow() {
             if (!sessionStorage.getItem("isLoggedIn")) {
-                sessionStorage.setItem("nextPage", "../loginPage/login.html"); 
-                window.location.href = "../loadingPage/loading.html";
+                // Set the login page as the next destination after loading screen
+                sessionStorage.setItem("nextPage", "../loginPage/login.html");
+            } else {
+                // User is logged in, set chat page as the next destination
+                sessionStorage.setItem("nextPage", "../chatPage/chat.html");
             }
+            // Redirect to loading screen
+            window.location.href = "../loadingPage/loading.html";
         }
     </script>
 </body>

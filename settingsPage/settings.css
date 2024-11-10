@@ -23,14 +23,14 @@ body {
     width: 100%;
     max-width: 600px;
     padding: 20px;
-    background-color: rgba(26, 31, 77, 0.95); /* Increased opacity for readability */
+    background-color: rgba(26, 31, 77, 0.95);
     border-radius: 10px;
     position: relative;
     z-index: 2;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Cloud Styling - matched with home page alignment */
+/* Cloud Styling */
 .cloud {
     position: fixed;
     background: rgba(255, 255, 255, 0.2);
@@ -234,22 +234,30 @@ header h1 {
     background-color: #00a1c2;
 }
 
-/* Sign Out button styling */
+/* Enhanced Sign Out button styling */
 .signout-button {
-    background-color: #d9534f;
+    background: linear-gradient(135deg, #d9534f, #c9302c);
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 24px;
+    border-radius: 8px;
     border: none;
     font-weight: bold;
-    font-size: 1em;
+    font-size: 1.1em;
     cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 15px;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(217, 83, 79, 0.4);
 }
 
 .signout-button:hover {
-    background-color: #c9302c;
+    background: linear-gradient(135deg, #c9302c, #a82724);
+    box-shadow: 0 6px 15px rgba(217, 83, 79, 0.6);
+    transform: scale(1.05);
+}
+
+.signout-button:active {
+    transform: scale(0.98);
+    box-shadow: 0 3px 8px rgba(217, 83, 79, 0.3);
 }
 
 /* Bottom Navigation Bar */

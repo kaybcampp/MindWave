@@ -67,13 +67,23 @@
             <a href="../milestonePage/milestone.html" class="nav-icon" title="Milestone" onclick="showLoading(event, '../milestonePage/milestone.html')">
                 <img src="../images/milestone.png" alt="Milestone">
             </a>            
-            <a href="../notesPage/notes.html" class="nav-icon" title="Notes" onclick="showLoading(event, '../notesPage/notes.html')">
+            <a href="../notesPage/notes.html" class="nav-icon active-page" title="Notes" onclick="showLoading(event, '../notesPage/notes.html')">
                 <img src="../images/notesIcon.png" alt="Notes">
             </a>            
             <a href="../settingsPage/settings.html" class="nav-icon" title="Settings" onclick="showLoading(event, '../settingsPage/settings.html')">
                 <img src="../images/settingsIcon.png" alt="Settings">
             </a>            
         </nav>
+
+        <script>
+            // Redirect to login page if not logged in
+            document.addEventListener("DOMContentLoaded", () => {
+                if (!sessionStorage.getItem("isLoggedIn")) {
+                    sessionStorage.setItem("nextPage", "../notesPage/notes.html");
+                    window.location.href = "../loadingPage/loading.html";
+                }
+            });
+        </script>
 
         <script src="notes.js"></script>
     </div>
